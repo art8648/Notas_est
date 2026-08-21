@@ -1,2 +1,2 @@
 # Notas_est
-Naoestava dando para incereir os nomes
+Não estava dando para incereir os nomes
