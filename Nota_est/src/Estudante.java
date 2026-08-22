@@ -11,16 +11,11 @@ public class Estudante {
         this.nome = nome;
         this.notas = new double[5];
     }
-    // Insere os nomes pelo teclado
-    public void insereNome() {
-        Scanner teclado = new Scanner(System.in);
-            System.out.print("Digite o nome do estudante: ");
-            this.nome = teclado.nextLine();
-        }
 
-    // Insere as 5 notas pelo teclado
+    // Insere as 5 notas
     public void insereNotas() {
         Scanner teclado = new Scanner(System.in);
+
         for (int i = 0; i < 5; i++) {
             System.out.print("Digite a " + (i + 1) + "ª nota: ");
             notas[i] = teclado.nextDouble();
@@ -38,16 +33,15 @@ public class Estudante {
         return soma / 5;
     }
 
-    // Get para o nome
+    // Retorna o nome
     public String getNome() {
         return nome;
     }
 
-    // Get para as notas
+    // Retorna as notas
     public double[] getNotas() {
         return notas;
     }
-
     // Retorna a menor nota
     public double menorNota() {
         double menor = notas[0];
@@ -59,5 +53,33 @@ public class Estudante {
         }
 
         return menor;
+    }
+    /* Método que recebe um array de estudantes e retorna somente os aprovados*/
+    public static Estudante[] aprovados(Estudante[] estudantes) {
+        int quantidadeAprovados = 0;
+        
+        //conta a quantidade de estudantes aprovados
+        for (int i = 0; i < estudantes.length; i++) {
+            if (estudantes[i].calculaMedia() >= 6.0) {
+                quantidadeAprovados++;
+            }
+        }
+        //Se ninguém foi aprovado, retorna null
+        if(quantidadeAprovados == 0) {
+            return null;
+        }
+
+        // Cria um novo array com o tamanho exato da quantidade de aprovados
+        Estudante[] aprovados = new Estudante[quantidadeAprovados];
+        int posicao = 0;
+
+        // Coloca os aprovados no novo array
+        for (int i = 0; i < estudantes.length; i++) {
+            if (estudantes[i].calculaMedia() >= 6.0) {
+                aprovados[posicao] = estudantes[i];
+                posicao++;
+            }
+        }
+        return aprovados;
     }
 }
